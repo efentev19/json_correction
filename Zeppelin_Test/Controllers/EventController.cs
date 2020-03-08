@@ -16,7 +16,7 @@ namespace Zeppelin_Test.Controllers
             List<Event> eventsCorrected = new List<Event>();
 
             // Path/Read/Deserialize JSON
-            string jsonPath = Server.MapPath("~/Json/InsiteEventAp_EventStreamData1.json");
+            string jsonPath = Server.MapPath("~/Json/InsiteEventAp_EventStreamData.json");
             string jsonValues = System.IO.File.ReadAllText(jsonPath);
             List<Event> eventsOriginal = JsonConvert.DeserializeObject<List<Event>>(jsonValues);
 
