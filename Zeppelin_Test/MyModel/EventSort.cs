@@ -172,6 +172,8 @@ namespace Zeppelin_Test.MyModel
                                 TimeSpan time = new TimeSpan();
                                 TimeSpan end = new TimeSpan(0, 0, 0);
                                 int? index = null;
+
+                                // Count hours from one day (time)
                                 foreach (var a in workers[i].Hours.ElementAt(j).Value)
                                 {
                                     if (a.Gehen != null && a.Kommen != null)
@@ -181,10 +183,13 @@ namespace Zeppelin_Test.MyModel
                                     }
                                 }
 
+                                // If time more than 8 hours
                                 if (time > work)
                                 {
                                     time = work;
                                 }
+                                // Cant count work hours? e.g. Kommen: null, Gehen: 16:00:00    ;    Kommen: 18:00:00, Gehen: null
+                                // Divide 8 hours / (list of work hours).Count
                                 else if (time == new TimeSpan(0, 0, 0))
                                 {
                                     int c = workers[i].Hours.ElementAt(j).Value.Count();
@@ -199,6 +204,7 @@ namespace Zeppelin_Test.MyModel
                                 }
                                 else if (index != null)
                                 {
+                                    // If element1.Gehen >= element2.Kommen -> element2.Kommen = element1.Gehen + 15 min
                                     if (item.Kommen <= workers[i].Hours.ElementAt(j).Value[(int)index].Gehen)
                                     {
                                         item.Kommen = item.Kommen.Value.AddMinutes(15);
@@ -263,8 +269,7 @@ namespace Zeppelin_Test.MyModel
                             }
                             else
                             {
-                                item.Correction[0] = true;
-                                item.Correction[1] = true;
+                                
                             }
                         }
                     }

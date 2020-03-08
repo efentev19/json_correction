@@ -90,14 +90,7 @@
 
                             @if (list.Correction[0] == true)
                             {
-                                if (list.Correction[1] == true)
-                                {
-                                    <td class="alert">@list.Kommen</td>
-                                }
-                                else
-                                {
-                                    <td class="warning">@list.Kommen</td>
-                                }
+                                <td class="warning">@list.Kommen</td>                               
                             }
                             else
                             {
@@ -106,14 +99,7 @@
 
                             @if (list.Correction[1] == true)
                             {
-                                if (list.Correction[0] == true)
-                                {
-                                    <td class="alert">@list.Gehen</td>
-                                }
-                                else
-                                {
-                                    <td class="warning">@list.Gehen</td>
-                                }
+                                <td class="warning">@list.Gehen</td>                                
                             }
                             else
                             {
