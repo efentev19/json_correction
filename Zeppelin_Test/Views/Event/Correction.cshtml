@@ -1,0 +1,128 @@
+﻿@model Zeppelin_Test.MyModel.ViewModel
+
+@{
+    ViewBag.Title = "Correction";
+}
+
+<h2>Correction</h2>
+
+<div class="table-responsive col-md-6">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>RFID</th>
+                <th>Time</th>
+                <th>Source</th>
+                <th>Type</th>
+            </tr>
+        </thead>
+
+        @foreach (var item in Model.events)
+        {
+            <tbody>
+                <tr>
+                    <td>@item.Rfid</td>
+                    <td>@item.EventTime</td>
+                    <td>@item.EventSource</td>
+                    <td>@item.EventType</td>
+                </tr>
+            </tbody>
+        }
+    </table>
+</div>
+
+<div class="table-responsive col-md-6">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>RFID</th>
+                <th>Time</th>
+                <th>Source</th>
+                <th>Type</th>
+            </tr>
+        </thead>
+
+        @foreach (var item in Model.eventsNew)
+        {
+            <tbody>
+                @if (item.Color == true)
+                {
+                    <tr class="success">
+                    <td>@item.Rfid</td>
+                    <td>@item.EventTime</td>
+                    <td>@item.EventSource</td>
+                    <td>@item.EventType</td>
+                    </tr>
+                }     
+                else
+                {
+                    <tr>
+                    <td>@item.Rfid</td>
+                    <td>@item.EventTime</td>
+                    <td>@item.EventSource</td>
+                    <td>@item.EventType</td>
+                    </tr>
+                }
+            </tbody>
+        }
+    </table>
+</div>
+
+<div class="table-responsive col-md-12">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>ENTER</th>
+                <th>LEAVE</th>
+            </tr>
+        </thead>
+
+        @foreach (var item in Model.workers)
+        {
+            foreach (var hour in item.Hours)
+            {
+                foreach (var list in hour.Value)
+                {
+                    <tbody>
+                        <tr>
+                            <td>@item.Id</td>
+
+                            @if (list.Correction[0] == true)
+                            {
+                                if (list.Correction[1] == true)
+                                {
+                                    <td class="alert">@list.Kommen</td>
+                                }
+                                else
+                                {
+                                    <td class="warning">@list.Kommen</td>
+                                }
+                            }
+                            else
+                            {
+                                <td>@list.Kommen</td>
+                            }
+
+                            @if (list.Correction[1] == true)
+                            {
+                                if (list.Correction[0] == true)
+                                {
+                                    <td class="alert">@list.Gehen</td>
+                                }
+                                else
+                                {
+                                    <td class="warning">@list.Gehen</td>
+                                }
+                            }
+                            else
+                            {
+                                <td>@list.Gehen</td>
+                            }
+                        </tr>
+                    </tbody>
+                }
+            }
+        }
+    </table>
+</div>
